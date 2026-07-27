@@ -1,0 +1,56 @@
+{
+  "name": "athios-wd",
+  "productName": "ATHIOS WD",
+  "version": "1.0.0",
+  "description": "ATHIOS WD - a minimal GUI wrapper around wget.exe for downloading entire websites for offline browsing.",
+  "author": "ATHIOS",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "geticon": "png-to-ico main-logo.png > build/icon.ico",
+    "start": "electron .",
+    "prebuild": "npm run geticon",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3",
+    "png-to-ico": "^2.1.8"
+  },
+  "build": {
+    "appId": "com.athios.wd",
+    "productName": "ATHIOS WD",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "style.css",
+      "renderer.js",
+      "main-logo.png",
+      "build/icon.ico"
+    ],
+    "extraResources": [
+      {
+        "from": "wget.exe",
+        "to": "wget.exe"
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "ATHIOS WD.exe"
+    }
+  }
+}
